@@ -1,0 +1,478 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body and background color */
+/* Apply background image to the body */
+body {
+    position: relative;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0;
+    background-image: url('bg.webp'); /* Replace with your image URL */
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-position: center; /* Center the image */
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+    height: 100vh; /* Ensure the body takes full height of the screen */
+    
+}
+
+/* Darken the background image using a pseudo-element */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity/darkness here */
+    z-index: -1; /* Places the overlay behind the content */
+}
+
+/* Ensure content appears on top */
+body > * {
+    position: relative;
+    z-index: 1; /* Ensures the content is above the overlay */
+}
+
+/* Optional: Responsive styling */
+@media (max-width: 768px) {
+    body {
+        background-size: cover; /* Adjust for mobile if needed */
+    }
+}
+
+
+/* Header styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #571037;
+    padding: 10px 20px;
+}
+
+header .logo img {
+    height: 50px;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+header .toggle-bar {
+    display: none;
+    font-size: 30px;
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+
+
+/* Slideshow styling */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px; /* Adjust as needed */
+    margin: 30px auto;
+    overflow: hidden;
+}
+
+.slideshow-container .slide {
+    display: none;
+    width: 100%;
+}
+
+.slideshow-container .slide img {
+    width: 100%;
+    height: 400px; /* Fixed height for uniformity */
+    object-fit: cover; /* Ensures images fill the container without distortion */
+}
+
+/* Adjust for smaller screens */
+@media screen and (max-width: 768px) {
+    .slideshow-container .slide img {
+        height: 250px; /* Smaller height for mobile screens */
+        object-fit: cover;
+    }
+}
+
+
+.slideshow-container .fade {
+    animation: fade 7s infinite; /* Slow down the fade to 7 seconds */
+}
+
+@keyframes fade {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    40% { opacity: 0; }
+}
+
+.slideshow-container .slide img {
+    width: 100%;
+    height: auto; /* Keep aspect ratio */
+    max-height: 500px; /* Ensure images are not too tall */
+    object-fit: cover; /* Keep the image aspect ratio while filling the container */
+}
+
+.slideshow-container .prev, .slideshow-container .next {
+    position: absolute;
+    top: 50%;
+    padding: 16px;
+    color: white;
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+}
+
+.slideshow-container .prev {
+    left: 0;
+}
+
+.slideshow-container .next {
+    right: 0;
+}
+
+.slideshow-container .prev:hover, .slideshow-container .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .slideshow-container {
+        max-width: 100%; /* Full width on mobile */
+        padding: 0 20px; /* Add padding to ensure the images don't touch the sides */
+    }
+
+    .slideshow-container .slide img {
+        height: auto;
+        max-height: 300px; /* Adjust height for smaller screens */
+    }
+}
+
+
+
+
+/* Intro Section */
+.intro {
+    text-align: center;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1000px;
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.intro h2 {
+    font-size: 24px;
+    color: #fff;
+}
+
+.intro p {
+    font-size: 16px;
+    color: #ddd;
+}
+
+/* Game Section Styling */
+.game-container {
+    text-align: center;
+    margin-top: 40px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3); 
+    
+}
+
+
+
+#game-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.game-item {
+    background-color: #222;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s;
+    overflow: hidden; /* Prevents any image overflow */
+}
+
+.game-item:hover {
+    transform: scale(1.05);
+}
+
+.game-item img {
+    width: 100%;  /* Ensures image width is 100% of the parent container */
+    height: 200px; /* Fixed height for all images */
+    object-fit: cover; /* Keeps the aspect ratio, and crops the image to fit */
+    border-radius: 8px; /* Optional: rounds the corners of the images */
+}
+
+
+.game-item h3 {
+    color: #fff;
+    margin: 10px 0;
+    
+}
+
+.game-item p {
+    color: #ccc;
+    font-size: 14px;
+}
+
+/* Pagination Styling */
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.pagination button:hover {
+    background-color: #ff9900;
+}
+
+#pageNumber {
+    font-size: 18px;
+    color: #fff;
+    margin: 0 10px;
+}
+
+
+.create-content {
+    text-align: center;
+    padding: 20px;
+    background-color: #222;
+    
+    
+    
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header nav ul {
+        display: none;
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    header nav ul li {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    header .toggle-bar {
+        display: block;
+    }
+
+    .games-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+/* Widened Content */
+/* Content Container with Two Columns */
+.content-container {
+    max-width: 1400px; /* Wider than the game list */
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #222; /* Slight contrast */
+    color: white;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+/* Section inside Content Container */
+.content-container .content-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    
+}
+.content-container strong {
+    color:#ff9d4d;
+}
+.content-container h3 {
+    color:#FCCB06;
+}
+
+
+/* Left and Right Column */
+.content-container .left-column,
+.content-container .right-column {
+    flex: 1;
+    padding: 20px;
+    background-color: #333; /* Darker for contrast */
+    border-radius: 10px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .content-container .content-section {
+        flex-direction: column;
+    }
+}
+
+
+/* Footer Styling */
+footer {
+    background-color: #111;
+    color: #fff;
+    padding: 20px 0;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between; /* Align left and right content */
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Left Side - Quick Links */
+.footer-links {
+    flex: 1;
+    min-width: 300px; /* Ensures proper spacing */
+    text-align: left;
+}
+
+.footer-links h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Align links in a row */
+    flex-wrap: wrap; /* Wrap on small screens */
+}
+
+.footer-links ul li {
+    margin-right: 15px; /* Space between links */
+}
+
+.footer-links ul li a {
+    color: #ffcc00;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: #571037;
+}
+
+/* Right Side - Info */
+.footer-info {
+    flex: 1;
+    min-width: 300px;
+    text-align: right;
+}
+
+.footer-info h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-info a {
+    color: #ffcc00;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.footer-info a:hover {
+    color: #571037;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links,
+    .footer-info {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .footer-links ul {
+        justify-content: center;
+    }
+}
+/* Footer Banner Styling */
+.footer-banner {
+    background-color: #571037;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 20px;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+/* Moving Text Effect */
+.footer-banner p {
+    display: inline-block;
+    animation: scrollBanner 10s linear infinite; /* Slow movement */
+}
+
+/* Animation Keyframes */
+@keyframes scrollBanner {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-banner {
+        font-size: 18px;
+    }
+}
+
